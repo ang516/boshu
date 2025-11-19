@@ -6,7 +6,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: '文溯 - 文物数字化搜索引擎',
+  title: '彼岸，此岸，海外流失文物的数字重逢',
   description: '为业外人士深入了解文物而设计的综合数字化平台，提供文物复原展示、历史背景解读、学术研究资源等服务。',
   generator: 'v0.app',
   icons: {
