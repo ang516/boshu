@@ -20,22 +20,22 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"  # 升级到 Node.js 20！
+          node-version: "20"
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Build and Export
-        run: |
-          npm run build
-          npx next export
+      - name: Build
+        run: npm run build  # 只运行构建，不运行导出
 
       - name: Debug - Check output
         run: |
           echo "=== Build output structure ==="
           ls -la
-          echo "=== out folder contents ==="
-          ls -la out/
+          echo "=== Checking for static export ==="
+          [ -d "./out" ] && echo "out exists:" && ls -la out/
+          [ -d "./dist" ] && echo "dist exists:" && ls -la dist/
+          [ -d "./build" ] && echo "build exists:" && ls -la build/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -43,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./out  # 如果调试显示其他目录，可能需要修改这里
 
   deploy:
     environment:
